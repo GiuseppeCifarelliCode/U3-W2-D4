@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col" *ngFor="let post of posts">
+  <div class="col" *ngFor="let post of posts, let i = index">
     <div class="card" [ngClass]="{
       'text-bg-warning': post.type === 'NEWS',
       'text-bg-dark': post.type === 'POLITIC',
@@ -12,9 +12,29 @@
       <h5 appGreycolor class="card-text">{{post.author}}</h5>
       <div class="d-flex justify-content-evenly">
       <button type="button" class="btn btn-danger" (click)="removePost(post)" >Deactivate</button>
-      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+ i">
         Details
       </button>
+    </div>
+    <div class="modal fade" [id]="i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"
+        [ngClass]="{
+          'text-bg-warning': post.type === 'NEWS',
+          'text-bg-dark': post.type === 'POLITIC',
+          'text-bg-primary': post.type === 'EDUCATION'}">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{post.title}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{post.body}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
       </div>
     </div>

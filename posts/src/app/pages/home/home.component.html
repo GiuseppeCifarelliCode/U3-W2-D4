@@ -15,10 +15,11 @@
       <p class="card-text">{{post.body | cut}}</p>
       <div class="d-flex justify-content-evenly align-items-center">
       <h5 appGreycolor class="card-text">{{post.author}}</h5>
-      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="i">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+ i">
         Details
       </button>
     </div>
+
     <div class="modal fade" [id]="i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content"
